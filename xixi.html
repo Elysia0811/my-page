@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交互页面</title>
+    <style>
+        body {
+            background-color: pink;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="mainText">哈基何是妮妮的狗</h1>
+    <button id="noButton">不要</button>
+    <button id="yesButton">要</button>
+
+    <script>
+        const noButton = document.getElementById('noButton');
+        const yesButton = document.getElementById('yesButton');
+        const mainText = document.getElementById('mainText');
+        let clickCount = 0;
+
+        noButton.addEventListener('click', function () {
+            clickCount++;
+            if (clickCount < 5) {
+                this.style.transform = `scale(${1 - 0.2 * clickCount})`;
+                yesButton.style.transform = `scale(${1 + 0.2 * clickCount})`;
+            } else {
+                this.textContent = '要';
+                this.style.transform = 'none';
+                yesButton.style.transform = 'none';
+            }
+        });
+
+        yesButton.addEventListener('click', function () {
+            mainText.textContent = '恭喜你得到了哈基何';
+            mainText.style.fontSize = '48px';
+            // 隐藏两个按钮
+            noButton.style.display = 'none';
+            yesButton.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
